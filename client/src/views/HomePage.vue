@@ -1,3 +1,12 @@
 <template>
-  <div>Home Page</div>
+  <div>{{ posts }}</div>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import usePosts from '../api/usePosts';
+
+const { posts, fetchPosts } = usePosts();
+
+onMounted(fetchPosts);
+</script>
