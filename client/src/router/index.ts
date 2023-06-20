@@ -6,6 +6,12 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomePage
+  },
+  {
+    path: '/posts/:slug',
+    name: 'post',
+    component: () => import('../views/PostPage.vue'),
+    props: true
   }
 ]
 
