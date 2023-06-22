@@ -14,10 +14,11 @@ jobs:
 
       # Build frontend
       - name: Install Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+          cache-dependency-path: client/package-lock.json
       - run: |
           cd client
           npm install
