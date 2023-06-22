@@ -11,9 +11,9 @@ jobs:
     - name: Go to Laravel API directory
       run: cd api
     - name: Compile CSS and Javascript
-        run: |
-          npm install
-          npm run production
+      run: |
+        npm install
+        npm run production
     - name: Configure PHP
       uses: shivammathur/setup-php@v2
       with:
