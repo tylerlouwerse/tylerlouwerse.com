@@ -1,0 +1,24 @@
+name: Deploy Laravel API
+on:
+  push:
+    branches: [ main ]
+jobs:
+  create-deployment-artifacts:
+    name: Create deployment artifacts
+    runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v3
+    - name: Go to Laravel API directory
+      run: cd api
+    - name: Compile CSS and Javascript
+        run: |
+          npm install
+          npm run production
+    - name: Configure PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.1
+        extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml
+    - name: Install Composer dependencies
+      run: composer install --no-dev --no-interaction --prefer-dist
+    
