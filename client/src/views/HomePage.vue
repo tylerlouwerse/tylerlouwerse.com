@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import usePosts from '../api/usePosts';
 
 const { posts, fetchPosts } = usePosts();
