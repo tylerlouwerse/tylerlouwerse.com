@@ -17,6 +17,7 @@ export const useStore = defineStore('main', {
     async authenticate() {
       try {
         const response = await axios.get('/api/user');
+        console.log(response);
         this.authenticated = true;
         this.user = response.data;
       } catch(e) {
@@ -28,7 +29,7 @@ export const useStore = defineStore('main', {
       await axios.get('/sanctum/csrf-cookie');
       await axios.post('/login', credentials);
 
-      await this.authenticate();
+      this.authenticate();
     }
   }
 })
