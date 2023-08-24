@@ -20,7 +20,7 @@
             </span>
           </p>
           <div>
-            <RouterLink to="/" class="text-sm font-medium">Edit</RouterLink>
+            <RouterLink :to="{ name: 'admin.posts.edit', params: { uuid: post.uuid } }" class="text-sm font-medium">Edit</RouterLink>
           </div>
           <div>
             <button class="text-sm font-medium">Delete</button>
@@ -42,8 +42,7 @@ const router = useRouter();
 const newPost = async () => {
   const post = await createPost();
 
-  router.push({ name: 'admin.posts.edit', params: { slug: post.slug } })
-  console.log(post);
+  router.push({ name: 'admin.posts.edit', params: { uuid: post.uuid } })
 }
 
 onMounted(async () => {

@@ -17,8 +17,10 @@ const routes = [
     path: '/admin/posts',
     name: 'admin.posts',
     component: () => import('../views/admin/PostsPage.vue'),
-    beforeEnter: (_: RouteLocationNormalized, __: RouteLocationNormalized, next: NavigationGuardNext) => {
+    beforeEnter: async (_: RouteLocationNormalized, __: RouteLocationNormalized, next: NavigationGuardNext) => {
       const store = useStore();
+
+      await store.authenticate();
 
       if(!store.authenticated) {
         return next({ name: 'admin.login' })
@@ -28,12 +30,14 @@ const routes = [
     }
   },
   {
-    path: '/admin/posts/:slug/edit',
+    path: '/admin/posts/:uuid/edit',
     name: 'admin.posts.edit',
-    component: () => import('../views/admin/Edit.vue'),
+    component: () => import('../views/admin/EditPostPage.vue'),
     props: true,
-    beforeEnter: (_: RouteLocationNormalized, __: RouteLocationNormalized, next: NavigationGuardNext) => {
+    beforeEnter: async (_: RouteLocationNormalized, __: RouteLocationNormalized, next: NavigationGuardNext) => {
       const store = useStore();
+
+      await store.authenticate();
 
       if(!store.authenticated) {
         return next({ name: 'admin.login' })

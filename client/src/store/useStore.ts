@@ -17,7 +17,6 @@ export const useStore = defineStore('main', {
     async authenticate() {
       try {
         const response = await axios.get('/api/user');
-        console.log(response);
         this.authenticated = true;
         this.user = response.data;
       } catch(e) {
