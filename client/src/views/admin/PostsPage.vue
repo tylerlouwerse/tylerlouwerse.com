@@ -13,7 +13,7 @@
         <div class="flex items-center space-x-6">
           <p class="text-base text-gray-500">
             <span
-              class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800"
+              class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium"
               :class="{ 'bg-green-100 text-green-800': post.published, 'bg-gray-100 text-gray-800': !post.published }"
             >
               {{ !post.published ? 'Unpublished' : 'Published' }}
@@ -23,7 +23,7 @@
             <RouterLink :to="{ name: 'admin.posts.edit', params: { uuid: post.uuid } }" class="text-sm font-medium">Edit</RouterLink>
           </div>
           <div>
-            <button class="text-sm font-medium">Delete</button>
+            <button class="text-sm font-medium" @click="deletePost(post.uuid)">Delete</button>
           </div>
         </div>
       </div>
@@ -36,8 +36,18 @@ import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import useAdminPosts from '../../api/useAdminPosts';
 
-const { posts, fetchPosts, createPost } = useAdminPosts();
+const { posts, fetchPosts, createPost, destroyPost } = useAdminPosts();
 const router = useRouter();
+
+const deletePost = async (uuid: string) => {
+  if(!window.confirm('You sure?')) {
+    return
+  }
+
+  await destroyPost(uuid);
+
+  posts.value = posts.value.filter(p => p.uuid !== uuid);
+}
 
 const newPost = async () => {
   const post = await createPost();
