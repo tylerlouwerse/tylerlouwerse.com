@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noImplicitThis": true,
+    "outDir": "./public/build/assets",
+    "paths": {
+      "@/*": ["resources/js/*"]
+    },
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "verbatimModuleSyntax": true
+  },
+  "exclude": ["node_modules", "public"],
+  "include": ["resources/**/*.ts", "resources/**/*.d.ts", "resources/**/*.vue"],
+  "typeRoots": ["./node_modules/@types", "./resources/js/Types"]
+}
