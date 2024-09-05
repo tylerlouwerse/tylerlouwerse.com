@@ -15,6 +15,7 @@ class Post extends Model
         'tag',
         'title',
         'slug',
+        'reading_mins',
         'body',
         'teaser',
         'published',

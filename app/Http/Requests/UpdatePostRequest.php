@@ -25,6 +25,7 @@ class UpdatePostRequest extends FormRequest
             'tag' => 'required|string',
             'slug' => 'required|string|unique:posts,slug,' . $this->post->id,
             'title' => 'required',
+            'reading_mins' => 'required|numeric',
             'body' => 'nullable',
             'teaser' => 'nullable',
             'published' => 'boolean',

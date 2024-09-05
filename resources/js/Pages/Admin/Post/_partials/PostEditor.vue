@@ -12,6 +12,7 @@ import StarterKit from '@tiptap/starter-kit'
 const emit = defineEmits<{
   (e: 'update:body', value: string): void
   (e: 'update:teaser', value: string): void
+  (e: 'update:reading_mins', value: number): void
 }>()
 
 const props = defineProps({
@@ -22,6 +23,10 @@ const props = defineProps({
   teaser: {
     type: String,
     default: '',
+  },
+  reading_mins: {
+    type: Number,
+    default: 0,
   },
 })
 
@@ -44,6 +49,12 @@ const editor = useEditor({
     }
 
     emit('update:teaser', teaser || '')
+
+    // extract and emit the reading time
+    const words = content.toString().split(' ').length
+    const readingMins = Math.ceil(words / 200)
+
+    emit('update:reading_mins', readingMins)
 
     // emit the content body
     emit('update:body', context.editor.getHTML())

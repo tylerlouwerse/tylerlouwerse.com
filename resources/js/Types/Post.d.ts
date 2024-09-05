@@ -4,6 +4,7 @@ declare namespace App {
     tag: string
     slug: string
     title: string
+    reading_mins: number
     body?: string
     teaser?: string
     published: boolean

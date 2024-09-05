@@ -51,7 +51,7 @@
       />
     </div>
 
-    <PostEditor v-model:body="form.body" v-model:teaser="form.teaser" />
+    <PostEditor v-model:body="form.body" v-model:teaser="form.teaser" v-model:reading_mins="form.reading_mins" />
   </AppLayout>
 </template>
 
@@ -82,6 +82,7 @@ const form = useForm({
   title: props.post.title,
   tag: props.post.tag,
   slug: props.post.slug,
+  reading_mins: props.post.reading_mins,
   body: props.post.body,
   teaser: props.post.teaser,
   published: props.post.published,

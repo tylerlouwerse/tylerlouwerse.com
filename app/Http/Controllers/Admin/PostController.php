@@ -25,6 +25,7 @@ class PostController extends Controller
         $post = Post::create([
             'title' => 'Untitled Post',
             'tag' => 'Personal',
+            'reading_mins' => 0,
         ]);
 
         return redirect()->route('admin.posts.edit', $post);

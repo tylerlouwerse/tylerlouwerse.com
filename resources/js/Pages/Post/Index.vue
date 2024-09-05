@@ -18,7 +18,7 @@
           </h1>
           <div class="mt-1 text-xs text-gray-600">
             <span class="font-bold text-indigo-800">{{ post.tag }}</span>
-            <span>&nbsp;| Reading Time: 12 mins</span>
+            <span>&nbsp;| Reading Time: {{ post.reading_mins }} {{ pluralize(post.reading_mins, 'min') }}</span>
           </div>
           <p class="mt-4 text-gray-500">
             {{ post.teaser }}
@@ -33,6 +33,7 @@
 import type { PropType } from 'vue'
 import { Head, Link } from '@inertiajs/vue3'
 import route from '@/Utils/route'
+import { pluralize } from '@/Utils/helpers'
 import AppLayout from '@/Layouts/AppLayout.vue'
 
 defineProps({
