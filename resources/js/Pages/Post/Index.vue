@@ -2,6 +2,14 @@
   <Head title="Posts" />
 
   <AppLayout>
+    <div class="mb-16 rounded border p-16 text-right text-stone-800">
+      <div>The Tao that can be understood</div>
+      <div>is not the eternal, cosmic Tao,</div>
+      <div>just as an idea that can be expressed in words</div>
+      <div>is not the infinite idea.</div>
+      <div class="mt-2 text-xs text-stone-400">- Lao Tzu</div>
+    </div>
+
     <div class="space-y-16">
       <div v-for="post in posts" :key="post.uuid">
         <Link :href="route('posts.show', post.slug)">
