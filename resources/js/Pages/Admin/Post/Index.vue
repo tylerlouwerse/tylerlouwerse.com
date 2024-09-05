@@ -2,7 +2,7 @@
   <Head title="Posts" />
 
   <AppLayout>
-    <div class="space-y-16">
+    <div class="space-y-8">
       <button
         type="button"
         class="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
@@ -15,9 +15,12 @@
         <div
           class="flex flex-wrap items-baseline space-x-0 space-y-3 sm:flex-nowrap sm:justify-between sm:space-x-6 sm:space-y-0"
         >
-          <p class="text-xl font-bold tracking-tight text-gray-900">
-            {{ post.title }}
-          </p>
+          <div>
+            <p class="text-xl font-bold tracking-tight text-gray-900">
+              {{ post.title }}
+            </p>
+            <div class="text-xs text-gray-500">{{ formatDate(post.published_at) }}</div>
+          </div>
           <div class="flex items-center space-x-6">
             <p class="text-base text-gray-500">
               <span
@@ -44,6 +47,7 @@
 import type { PropType } from 'vue'
 import { Head, Link, router } from '@inertiajs/vue3'
 import route from '@/Utils/route'
+import { formatDate } from '@/Utils/format'
 import AppLayout from '@/Layouts/AppLayout.vue'
 
 defineProps({

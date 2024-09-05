@@ -40,7 +40,7 @@ const editor = useEditor({
     let teaser = content ? content.firstChild?.textContent : ''
 
     if (teaser && teaser.length > 100) {
-      teaser = teaser.split(' ').slice(0, 20).join(' ') + '...'
+      teaser = teaser.split(' ').slice(0, 50).join(' ') + '...'
     }
 
     emit('update:teaser', teaser || '')

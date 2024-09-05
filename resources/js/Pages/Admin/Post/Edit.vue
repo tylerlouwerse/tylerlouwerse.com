@@ -28,16 +28,25 @@
       </div>
     </div>
 
-    <div class="mb-3">
-      <Link :href="route('admin.posts.index')" class="text-sm font-extrabold text-purple-700 hover:underline">
-        <ArrowLeftIcon class="-mt-1 mr-1 inline-block h-3 w-3" />
-        <span>Posts</span>
-      </Link>
+    <div class="mb-8">
+      <div class="flex justify-between">
+        <Link :href="route('admin.posts.index')" class="text-sm font-extrabold text-purple-700 hover:underline">
+          <ArrowLeftIcon class="-mt-1 mr-1 inline-block h-3 w-3" />
+          <span>Posts</span>
+        </Link>
+        <div>
+          <input
+            v-model="form.tag"
+            class="w-full border-none p-0 text-right text-sm font-extrabold text-purple-700 focus:ring-0"
+            @click="($event.target as HTMLInputElement).select()"
+          />
+        </div>
+      </div>
     </div>
 
     <div>
       <ResizeTextarea
-        class="w-full resize-none border-none p-0 text-4xl font-extrabold leading-10 tracking-tight text-gray-900 focus:ring-0 lg:text-6xl"
+        class="mb-8 w-full resize-none border-none p-0 text-4xl font-extrabold leading-10 tracking-tight text-gray-900 focus:ring-0 lg:text-6xl"
         v-model="form.title"
       />
     </div>
@@ -71,6 +80,7 @@ const props = defineProps({
 
 const form = useForm({
   title: props.post.title,
+  tag: props.post.tag,
   slug: props.post.slug,
   body: props.post.body,
   teaser: props.post.teaser,

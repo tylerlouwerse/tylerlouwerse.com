@@ -16,11 +16,13 @@ class PostResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
+            'tag' => $this->tag,
             'title' => $this->title,
             'slug' => $this->slug,
             'teaser' => $this->teaser,
             'body' => $this->body,
             'published' => $this->published,
+            'published_at' => $this->published_at,
         ];
     }
 }

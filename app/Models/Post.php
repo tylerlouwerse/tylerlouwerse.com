@@ -12,6 +12,7 @@ class Post extends Model
 
     protected $fillable = [
         'uuid',
+        'tag',
         'title',
         'slug',
         'body',
@@ -21,6 +22,7 @@ class Post extends Model
 
     protected $casts = [
         'published' => 'boolean',
+        'published_at' => 'datetime',
     ];
 
     public static function booted()
@@ -30,6 +32,12 @@ class Post extends Model
 
             if (!$post->slug) {
                 $post->slug = $post->uuid;
+            }
+        });
+
+        static::updating(function (Post $post) {
+            if ($post->isDirty('published') && $post->published) {
+                $post->published_at = now();
             }
         });
     }
