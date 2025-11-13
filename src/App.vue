@@ -54,9 +54,7 @@ const contact = {
   email: 'tylouwerse@gmail.com',
 }
 
-const summary = `I am a full stack developer with a strong background in web application development and a focus on delivering practical, scalable solutions.
-
-The majority of my experience is in Vue and Laravel where I've worked developing apps, integrating third-party APIs, and leading projects from ideation to execution.`
+const summary = `I am a full stack developer with a strong background in web application development and a focus on delivering practical, scalable solutions.`
 
 const techStack = ['Vue.js', 'Laravel', 'TypeScript', 'JavaScript', 'PHP', 'SQL', 'Git']
 
