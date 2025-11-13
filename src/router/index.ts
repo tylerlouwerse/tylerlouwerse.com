@@ -8,10 +8,6 @@ const router = createRouter({
       path: '/',
       component: Home,
     },
-    {
-      path: '/graffiti',
-      component: () => import('@/views/Graffiti.vue'),
-    },
   ],
 })
 

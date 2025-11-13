@@ -2,28 +2,13 @@
   <div class="portfolio">
     <!-- Hero Section -->
     <section class="hero">
+      <JapaneseEnso />
       <div class="hero-content">
         <div class="hero-text">
           <h1 class="hero-name">
-            <span class="name-line">Tyler</span>
-            <span class="name-line">Louwerse</span>
+            <span class="name-line">I'm Tyler</span>
           </h1>
-          <p class="hero-title">Full Stack Developer</p>
-          <p class="hero-description">{{ summary }}</p>
-        </div>
-        <div class="hero-contact">
-          <a :href="`mailto:${contact.email}`" class="contact-link email">
-            <span class="contact-icon">✉</span>
-            {{ contact.email }}
-          </a>
-          <a :href="`tel:${contact.phone}`" class="contact-link phone">
-            <span class="contact-icon">📞</span>
-            {{ contact.phone }}
-          </a>
-          <div class="contact-link location">
-            <span class="contact-icon">📍</span>
-            {{ contact.location }}
-          </div>
+          <p class="hero-title">and I build software</p>
         </div>
       </div>
     </section>
@@ -46,19 +31,11 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import JapaneseEnso from '@/components/JapaneseEnso.vue'
 
 defineOptions({
   name: 'HomePage',
 })
-
-// Portfolio data
-const contact = {
-  location: 'Victoria BC, Canada',
-  phone: '905-971-8107',
-  email: 'tylouwerse@gmail.com',
-}
-
-const summary = `I am a full stack developer with a strong background in web application development and a focus on delivering practical, scalable solutions.`
 
 const techStack = ['Vue.js', 'Laravel', 'TypeScript', 'JavaScript', 'PHP', 'SQL', 'Git']
 
@@ -115,7 +92,7 @@ onMounted(() => {
 .hero-content {
   max-width: 900px;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
   position: relative;
   animation: fadeInUp 0.8s ease-out;
 }
