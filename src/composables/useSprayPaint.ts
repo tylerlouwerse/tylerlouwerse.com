@@ -9,14 +9,8 @@ type SprayPaintOptions = {
 export const useSprayPaint = (options: SprayPaintOptions) => {
   const { dotRadius, sprayRadius, sprayStrength, dotsPerSpray, dotColor } = options
 
-  const sprayPaint = (canvas: HTMLCanvasElement, coordinates: { x: number; y: number }) => {
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    const rect = canvas.getBoundingClientRect()
-    const centerX = coordinates.x - rect.left
-    const centerY = coordinates.y - rect.top
-
+  // Internal function that works directly with canvas coordinates
+  const sprayPaintCanvas = (ctx: CanvasRenderingContext2D, centerX: number, centerY: number) => {
     for (let i = 0; i < dotsPerSpray; i++) {
       // Generate random angle
       const angle = Math.random() * Math.PI * 2
@@ -47,6 +41,17 @@ export const useSprayPaint = (options: SprayPaintOptions) => {
     ctx.globalAlpha = 1
   }
 
+  const sprayPaint = (canvas: HTMLCanvasElement, coordinates: { x: number; y: number }) => {
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const rect = canvas.getBoundingClientRect()
+    const centerX = coordinates.x - rect.left
+    const centerY = coordinates.y - rect.top
+
+    sprayPaintCanvas(ctx, centerX, centerY)
+  }
+
   const sprayPaintPath = (
     canvas: HTMLCanvasElement,
     pathString: string,
@@ -69,15 +74,13 @@ export const useSprayPaint = (options: SprayPaintOptions) => {
     )
 
     // Generate evenly spaced points along the path
+    // These points are already in canvas coordinate space
     const points: { x: number; y: number }[] = []
     for (let i = 0; i <= numPoints; i++) {
       const distance = (i / numPoints) * pathLength
       const point = svgPath.getPointAtLength(distance)
       points.push({ x: point.x, y: point.y })
     }
-
-    // Get canvas bounding rect once for coordinate conversion
-    const rect = canvas.getBoundingClientRect()
 
     // Animation state
     let startTime: number | null = null
@@ -96,14 +99,11 @@ export const useSprayPaint = (options: SprayPaintOptions) => {
       const targetPointIndex = Math.floor(progress * (points.length - 1))
 
       // Spray paint at all points up to the current target
+      // Points are already in canvas coordinates, so use them directly
       while (currentPointIndex <= targetPointIndex && currentPointIndex < points.length) {
         const point = points[currentPointIndex]
         if (point) {
-          // Convert canvas coordinates to client coordinates for sprayPaint
-          sprayPaint(canvas, {
-            x: point.x + rect.left,
-            y: point.y + rect.top,
-          })
+          sprayPaintCanvas(ctx, point.x, point.y)
         }
         currentPointIndex++
       }
